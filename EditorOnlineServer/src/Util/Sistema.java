@@ -1,5 +1,6 @@
 package Util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -32,8 +33,8 @@ public class Sistema {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Object CarregarSistema(String diretorio) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(diretorio);
+    public static Object CarregarSistema(String dir) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(dir);
         ObjectInputStream ois = new ObjectInputStream(fis);
         Object ob = ois.readObject();
         ois.close();
