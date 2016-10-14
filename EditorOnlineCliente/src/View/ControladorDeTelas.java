@@ -43,4 +43,18 @@ public class ControladorDeTelas extends Application{
         window.setScene(tela);
         window.show();
     }
+    
+    public void conectar(String ipServidor){
+        controller.conectar(ipServidor);
+    }
+    
+    public void logIn(String usuario, String senha){
+        if(controller.logIn(usuario, senha)){
+            telaInicial();
+        }
+    }
+
+    private void telaInicial() {
+        
+    }
 }

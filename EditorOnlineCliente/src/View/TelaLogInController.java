@@ -26,6 +26,8 @@ public class TelaLogInController implements Initializable {
     private ControladorDeTelas controlador;
     @FXML
     private Button logIn;
+    @FXML
+    private TextField ipServidorInput;
     /**
      * Initializes the controller class.
      */
@@ -36,7 +38,10 @@ public class TelaLogInController implements Initializable {
 
     @FXML
     private void logIn(ActionEvent event) {
-    
+        if(!ipServidorInput.getText().isEmpty() && !senhaInput.getText().isEmpty() && !usuarioInput.getText().isEmpty()){
+            controlador.conectar(ipServidorInput.getText());
+            controlador.logIn(usuarioInput.getText(), senhaInput.getText());
+        }
     }
     
     

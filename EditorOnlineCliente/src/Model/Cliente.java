@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Util.InterfaceMetodoRemoto;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -14,10 +15,12 @@ import java.rmi.registry.Registry;
  */
 public class Cliente {
     
+    InterfaceMetodoRemoto remote;
+    
     public void conectar(String porta){
         try{
         Registry myRegistry = LocateRegistry.getRegistry(porta, 1099);
-        
+        remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnline");
         
         }catch(Exception e){
            e.printStackTrace();

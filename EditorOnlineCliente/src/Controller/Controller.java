@@ -30,4 +30,8 @@ public class Controller {
     public boolean logIn(String nome, String senha){
         return cliente.logIn(nome, senha);
     }
+    
+    public void conectar(String ipServidor){
+        cliente.conectar(ipServidor);
+    }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="258.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TelaLogInController">
+<AnchorPane id="AnchorPane" prefHeight="296.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TelaLogInController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="30.0" prefWidth="600.0" text="Bem vindo ao Editor Online" textFill="#0021f5">
          <font>
@@ -33,7 +33,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button id="logIn" fx:id="logIn" layoutX="422.0" layoutY="179.0" mnemonicParsing="false" onAction="#logIn" prefHeight="44.0" prefWidth="131.0" text="Log In">
+      <Button id="logIn" fx:id="logIn" layoutX="439.0" layoutY="231.0" mnemonicParsing="false" onAction="#logIn" prefHeight="44.0" prefWidth="131.0" text="Log In">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,5 +43,15 @@
             <Font size="14.0" />
          </font>
       </PasswordField>
+      <Label layoutX="76.0" layoutY="176.0" text="IP do Servidor:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ipServidorInput" layoutX="226.0" layoutY="179.0" promptText="IP Servidor">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
