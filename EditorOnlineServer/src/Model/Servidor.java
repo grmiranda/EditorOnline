@@ -9,6 +9,7 @@ import Util.InterfaceMetodoRemoto;
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 /**
  *
@@ -18,10 +19,9 @@ public class Servidor {
     
     public Servidor(){
         try{
-            System.setProperty("java.rmi.server.hostname", "127.0.0.1");
-            LocateRegistry.createRegistry(1099);
+            Registry reg = LocateRegistry.createRegistry(1099);
             InterfaceMetodoRemoto c = new MetodoRemotoImplemente();
-            Naming.bind("EditorOnlineService", (Remote)c);
+            Naming.rebind("EditorOnlineService", (Remote)c);
             
         }catch(Exception e){
             e.printStackTrace();

@@ -6,8 +6,11 @@
 package Model;
 
 import Util.InterfaceMetodoRemoto;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +31,12 @@ public class Cliente {
     }
     
     public boolean logIn(String nome, String senha) {
-        
+        try {
+            return remote.loginIn(nome, senha);
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao invocar metodo Remoto");
+            return false;
+        }
     }
     
 }
