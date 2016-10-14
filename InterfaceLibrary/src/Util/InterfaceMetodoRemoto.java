@@ -1,6 +1,8 @@
 package Util;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.LinkedList;
 
 /**
  * Esta interface contem os metodos que deve ser implementados no servidor da aplicação e que podem ser utilizados via RMI
@@ -16,4 +18,13 @@ import java.rmi.Remote;
  */
 public interface InterfaceMetodoRemoto extends Remote{
     
+    public boolean loginIn(String nome, String senha) throws RemoteException;
+    
+    public boolean criarArquivo(String nomeFile)throws RemoteException;
+    
+    public boolean salvarArquivo(String nomeArquivo, int posicao, String linha)throws RemoteException;
+    
+    public LinkedList<String> editarArquivo(String nomeArquivo, String caractere, int linha)throws RemoteException;
+
+      
 }

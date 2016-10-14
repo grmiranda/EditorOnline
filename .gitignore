@@ -1,4 +1,8 @@
 /InterfaceLibrary/nbproject/private/
 /InterfaceLibrary/build/
 /InterfaceLibrary/dist/
+<<<<<<< HEAD
+/EditorOnlineServer/build/
+=======
 /EditorOnlineCliente/build/
+>>>>>>> 7bef895f3edf050e2154764ac7809bfce619e61e
