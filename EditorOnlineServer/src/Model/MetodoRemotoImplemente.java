@@ -89,6 +89,17 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
        
     }
     
+    public String[] listarArquivos(){
+        String[] ListaDeDiretorios = null;
+        File f = new File("Arquivos");
+        if(f.exists() != false){
+           return null;
+           
+        }else
+             return f.list();
+        
+    }
+    
     
     
     
