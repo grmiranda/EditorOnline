@@ -23,7 +23,7 @@ public class Cliente {
     public void conectar(String porta){
         try{
         Registry myRegistry = LocateRegistry.getRegistry(porta, 1099);
-        remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnline");
+        remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnlineService");
         
         }catch(Exception e){
            e.printStackTrace();
