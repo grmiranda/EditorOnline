@@ -19,6 +19,7 @@ public class Servidor {
     
     public Servidor(){
         try{
+            System.setProperty("java.rmi.server.hostname", "seu IP: X.X.X.X");
             Registry reg = LocateRegistry.createRegistry(1099);
             InterfaceMetodoRemoto c = new MetodoRemotoImplemente();
             Naming.rebind("EditorOnlineService", (Remote)c);
