@@ -56,45 +56,43 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
 
     @Override
     public boolean criarArquivo(String nomeArquivo) throws RemoteException {
-        try {
-            Sistema.SalvarSistema(new LinkedList<String>(),nomeArquivo);
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
+       File arquivo = new File(nomeArquivo);
+       if(!arquivo.exists()){
+           try {
+               arquivo.createNewFile();
+                return true;
+           } catch (IOException ex) {
+               Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
+           }
+          
+       }
+       return false;
     }
 
     @Override
-    public boolean salvarArquivo(String nomeArquivo, int posicao, String linha) throws RemoteException {
+    public boolean salvarArquivo(String nomeArquivo, String texto) throws RemoteException {
         
-        try {
-            LinkedList<String> arquivo = arquivosAbertos.get(nomeArquivo);
-            arquivo.add(posicao, linha);
-            Sistema.SalvarSistema(arquivo, nomeArquivo);
+        if(arquivosAbertos.containsKey(nomeArquivo)){
+            Sistema.SalvarTexto(nomeArquivo, texto);
             return true;
-        } catch (IOException ex) {
-            Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         return false;
     }
 
     @Override
     public String abrirArquivo(String nomeArquivo, String ip) throws RemoteException {
-       String conteudo = "";
-        try {
-            File f = new File(nomeArquivo);
-            Scanner texto = new Scanner(f);
-            while(texto.hasNextLine())
-                conteudo = conteudo + texto.nextLine();
-            
-            
-            return conteudo;
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-       
+        String conteudo = "";
+           conteudo = Sistema.CarregarTexto(nomeArquivo);
+           if(arquivosAbertos.containsKey(nomeArquivo)){
+               arquivosAbertos.get(nomeArquivo).add(ip);
+               return conteudo;
+           }
+           else{
+               arquivosAbertos.put(nomeArquivo, new LinkedList<String>());
+               arquivosAbertos.get(nomeArquivo).add(ip);
+               return conteudo;
+           }
     }
     
     @Override

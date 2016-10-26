@@ -22,7 +22,7 @@ public interface InterfaceMetodoRemoto extends Remote{
     
     public boolean criarArquivo(String nomeFile)throws RemoteException;
     
-    public boolean salvarArquivo(String nomeArquivo, int posicao, String linha)throws RemoteException;
+    public boolean salvarArquivo(String nomeArquivo,String texto)throws RemoteException;
     
     public String abrirArquivo(String nomeArquivo,  String ip)throws RemoteException;
 

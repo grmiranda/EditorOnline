@@ -7,6 +7,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Sistema {
     
@@ -18,13 +22,18 @@ public class Sistema {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static void SalvarSistema(String diretorio, String texto) throws FileNotFoundException, IOException {
-       File f = new File(diretorio);
-       PrintStream saida = new PrintStream(f);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(obj);
-        oos.close();
-        fos.close();
+    public static void SalvarTexto(String diretorio, String texto){
+       File arquivo = new File(diretorio);
+       PrintStream saida;
+       
+        try {
+            saida = new PrintStream(arquivo);
+            saida.println(texto);
+            saida.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -35,12 +44,20 @@ public class Sistema {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Object CarregarSistema(String dir) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(dir);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        Object ob = ois.readObject();
-        ois.close();
-        fis.close();
-        return ob;
+    public static String CarregarTexto(String dir){
+        String conteudo = "";
+        File arquivo = new File(dir);
+        Scanner entrada;
+        try {
+            entrada = new Scanner(arquivo);
+              while(entrada.hasNextLine())
+                conteudo = conteudo + entrada.nextLine();
+        
+        return conteudo;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+      
     }
 }
