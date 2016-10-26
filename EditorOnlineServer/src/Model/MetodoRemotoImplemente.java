@@ -23,12 +23,14 @@ import java.util.logging.Logger;
  * @author murilo
  */
 public class MetodoRemotoImplemente extends UnicastRemoteObject implements InterfaceMetodoRemoto {
-    
+    private LinkedList<String> pilhaExecucao;
     private HashMap<String,LinkedList<String>> arquivosAbertos;
-    
+    //arquivosAbertos contem como chave o nome do arquivo e uma lista de IPs dos usuarios que estão editando
     public MetodoRemotoImplemente()throws RemoteException{
         super();
-        arquivosAbertos = new HashMap<>();      
+        arquivosAbertos = new HashMap<String, LinkedList<String>>();      
+        pilhaExecucao = new LinkedList<String>();
+    
     }
 
     @Override
@@ -78,12 +80,19 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     }
 
     @Override
-    public LinkedList<String> editarArquivo(String nomeArquivo,String caractere, int linha) throws RemoteException {
-        LinkedList<String> arquivo = arquivosAbertos.get(nomeArquivo);
-        arquivo.add(linha, arquivo.get(linha) + caractere);
-        
-        
-        
+    public String abrirArquivo(String nomeArquivo, String ip) throws RemoteException {
+       String conteudo = "";
+        try {
+            File f = new File(nomeArquivo);
+            Scanner texto = new Scanner(f);
+            while(texto.hasNextLine())
+                conteudo = conteudo + texto.nextLine();
+            
+            
+            return conteudo;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
        
     }
@@ -99,6 +108,19 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
              return f.list();
         
     }
+
+    @Override
+    public void editarArquivo(String informacao) throws RemoteException {
+       pilhaExecucao.add(informacao);
+        
+        
+    }
+    
+    public void verificarPosicao(){
+        
+    }
+    
+    
     
     
     
