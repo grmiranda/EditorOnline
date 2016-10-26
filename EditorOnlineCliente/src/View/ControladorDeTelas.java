@@ -48,13 +48,21 @@ public class ControladorDeTelas extends Application{
         controller.conectar(ipServidor);
     }
     
-    public void logIn(String usuario, String senha){
+    public void logIn(String usuario, String senha) throws IOException{
         if(controller.logIn(usuario, senha)){
             telaInicial();
         }
     }
 
-    private void telaInicial() {
-        
+    private void telaInicial() throws IOException {
+        window = new Stage();
+        // LEMBRAR DE PASSAR O FXML PARA UMA PASTA E MUDAR A REFERENCIA DO MÉTODO NA HORA DE UTILIZAR O .jar!!
+        Parent root = (Parent) FXMLLoader.load(new File("src"+ File.separator +"View"+ File.separator +"TelaInicial.fxml").toURI().toURL());
+        // ----------------------------------------------------------------------------------------------------
+        tela = new Scene(root);
+        window.setScene(tela);
+        window.show();
     }
+    
+    
 }

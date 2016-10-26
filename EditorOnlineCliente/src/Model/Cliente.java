@@ -9,6 +9,7 @@ import Util.InterfaceMetodoRemoto;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,5 +39,12 @@ public class Cliente {
             return false;
         }
     }
+
+    public String[] getListaArquivos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    public LinkedList<String> getArquivo(String nomeArquivo){
+    
+    }
 }

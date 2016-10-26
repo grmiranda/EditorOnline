@@ -1,6 +1,7 @@
 
 package View;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -37,7 +38,7 @@ public class TelaLogInController implements Initializable {
     }
 
     @FXML
-    private void logIn(ActionEvent event) {
+    private void logIn(ActionEvent event) throws IOException {
         if(!ipServidorInput.getText().isEmpty() && !senhaInput.getText().isEmpty() && !usuarioInput.getText().isEmpty()){
             controlador.conectar(ipServidorInput.getText());
             controlador.logIn(usuarioInput.getText(), senhaInput.getText());

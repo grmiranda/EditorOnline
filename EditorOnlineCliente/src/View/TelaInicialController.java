@@ -7,7 +7,12 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -16,6 +21,16 @@ import javafx.fxml.Initializable;
  */
 public class TelaInicialController implements Initializable {
     private ControladorDeTelas controlador;
+    @FXML
+    private TextArea textoArquivo;
+    @FXML
+    private TextArea listaArquivos;
+    @FXML
+    private TextField arquivoInput;
+    @FXML
+    private Button abrirButton;
+    @FXML
+    private Button atualizarLista;
     /**
      * Initializes the controller class.
      */
@@ -23,5 +38,15 @@ public class TelaInicialController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         controlador = new ControladorDeTelas();
     }    
+
+    @FXML
+    private void abrirArquivo(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void atualizarLista(ActionEvent event) {
+        
+    }
     
 }

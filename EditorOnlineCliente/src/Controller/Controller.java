@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Cliente;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,7 +17,6 @@ public class Controller {
     private Cliente cliente;
     
     private Controller(){
-        instance = new Controller();
         cliente = new Cliente();
     }
     
@@ -33,5 +33,13 @@ public class Controller {
     
     public void conectar(String ipServidor){
         cliente.conectar(ipServidor);
+    }
+    
+    public LinkedList<String> getArquivo(String nomeArquivo){
+        return cliente.getArquivo(nomeArquivo);
+    }
+    
+    public String[] getListaArquivos(){
+        return cliente.getListaArquivos();
     }
 }

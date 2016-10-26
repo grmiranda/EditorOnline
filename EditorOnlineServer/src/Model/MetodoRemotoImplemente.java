@@ -25,11 +25,10 @@ import java.util.logging.Logger;
 public class MetodoRemotoImplemente extends UnicastRemoteObject implements InterfaceMetodoRemoto {
     
     private HashMap<String,LinkedList<String>> arquivosAbertos;
+    
     public MetodoRemotoImplemente()throws RemoteException{
         super();
-        arquivosAbertos = new HashMap<String, LinkedList<String>>();
-        
-        
+        arquivosAbertos = new HashMap<>();      
     }
 
     @Override
@@ -89,6 +88,7 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
        
     }
     
+    @Override
     public String[] listarArquivos(){
         String[] ListaDeDiretorios = null;
         File f = new File("Arquivos");
