@@ -28,14 +28,13 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     //arquivosAbertos contem como chave o nome do arquivo e uma lista de IPs dos usuarios que estão editando
     public MetodoRemotoImplemente()throws RemoteException{
         super();
-        arquivosAbertos = new HashMap<String, LinkedList<String>>();      
-        pilhaExecucao = new LinkedList<String>();
-    
+        arquivosAbertos = new HashMap<>();      
+        pilhaExecucao = new LinkedList<>();
     }
 
     @Override
     public boolean loginIn(String username, String senha) throws RemoteException {
-        File f = new File(File.separator + "registro.txt");
+        File f = new File("registro.txt");
         String linha = "";
         if(f.exists() == true){
             try {
@@ -110,8 +109,6 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public void editarArquivo(String informacao) throws RemoteException {
        pilhaExecucao.add(informacao);
-        
-        
     }
     
     public void verificarPosicao(){
