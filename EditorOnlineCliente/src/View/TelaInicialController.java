@@ -31,6 +31,8 @@ public class TelaInicialController implements Initializable {
     private Button abrirButton;
     @FXML
     private Button atualizarLista;
+    @FXML
+    private Button salvarArquivo;
     /**
      * Initializes the controller class.
      */
@@ -47,6 +49,10 @@ public class TelaInicialController implements Initializable {
     @FXML
     private void atualizarLista(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void salvarArquivo(ActionEvent event) {
     }
     
 }

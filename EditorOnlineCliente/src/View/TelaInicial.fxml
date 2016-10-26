@@ -10,7 +10,7 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TelaInicialController">
    <children>
       <TextArea fx:id="textoArquivo" layoutX="12.0" layoutY="47.0" prefHeight="547.0" prefWidth="669.0" />
-      <TextArea fx:id="listaArquivos" layoutX="693.0" layoutY="47.0" prefHeight="164.0" prefWidth="484.0" />
+      <TextArea fx:id="listaArquivos" editable="false" layoutX="693.0" layoutY="47.0" prefHeight="239.0" prefWidth="484.0" />
       <Label layoutX="266.0" layoutY="6.0" text="Editor Online">
          <font>
             <Font size="24.0" />
@@ -21,22 +21,27 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="arquivoInput" layoutX="933.0" layoutY="272.0" promptText="Nome.txt">
+      <TextField fx:id="arquivoInput" layoutX="938.0" layoutY="388.0" promptText="Nome.txt">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Label layoutX="730.0" layoutY="276.0" text="Nome do Arquivo:">
+      <Label layoutX="735.0" layoutY="392.0" text="Nome do Arquivo:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="abrirButton" layoutX="694.0" layoutY="320.0" mnemonicParsing="false" onAction="#abrirArquivo" prefHeight="37.0" prefWidth="484.0" text="Abrir/Criar Arquio">
+      <Button fx:id="abrirButton" layoutX="694.0" layoutY="454.0" mnemonicParsing="false" onAction="#abrirArquivo" prefHeight="37.0" prefWidth="484.0" text="Abrir/Criar Arquio">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="atualizarLista" layoutX="694.0" layoutY="221.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="37.0" prefWidth="484.0" text="Atualizar Lista de Arquivos">
+      <Button fx:id="atualizarLista" layoutX="693.0" layoutY="321.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="37.0" prefWidth="484.0" text="Atualizar Lista de Arquivos">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="salvarArquivo" layoutX="696.0" layoutY="525.0" mnemonicParsing="false" onAction="#salvarArquivo" prefHeight="37.0" prefWidth="484.0" text="Salvar Arquivo">
          <font>
             <Font size="16.0" />
          </font>

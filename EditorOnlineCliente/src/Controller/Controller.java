@@ -35,7 +35,7 @@ public class Controller {
         cliente.conectar(ipServidor);
     }
     
-    public LinkedList<String> getArquivo(String nomeArquivo){
+    public String getArquivo(String nomeArquivo){
         return cliente.getArquivo(nomeArquivo);
     }
     

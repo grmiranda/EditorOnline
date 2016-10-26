@@ -23,58 +23,63 @@ import java.util.logging.Logger;
  * @author murilo
  */
 public class MetodoRemotoImplemente extends UnicastRemoteObject implements InterfaceMetodoRemoto {
+
     private LinkedList<String> pilhaExecucao;
-    private HashMap<String,LinkedList<String>> arquivosAbertos;
+    private HashMap<String, LinkedList<String>> arquivosAbertos;
+
     //arquivosAbertos contem como chave o nome do arquivo e uma lista de IPs dos usuarios que estão editando
-    public MetodoRemotoImplemente()throws RemoteException{
+    public MetodoRemotoImplemente() throws RemoteException {
         super();
+
         arquivosAbertos = new HashMap<>();      
         pilhaExecucao = new LinkedList<>();
+
     }
 
     @Override
     public boolean loginIn(String username, String senha) throws RemoteException {
         File f = new File("registro.txt");
         String linha = "";
-        if(f.exists() == true){
+        if (f.exists() == true) {
             try {
                 Scanner s = new Scanner(f);
-                while(s.hasNextLine()){
-                    String dados[] =  s.nextLine().split(" ");
-                    if(dados[0].equals(username) && dados[1].equals(senha)){
-                         s.close();
+                while (s.hasNextLine()) {
+                    String dados[] = s.nextLine().split(" ");
+                    if (dados[0].equals(username) && dados[1].equals(senha)) {
+                        s.close();
                         return true;
                     }
                 }
                 s.close();
-            } catch (FileNotFoundException ex) {}
+            } catch (FileNotFoundException ex) {
+            }
         }
-        
+
         return false;
     }
 
     @Override
     public boolean criarArquivo(String nomeArquivo) throws RemoteException {
-       File arquivo = new File(nomeArquivo);
-       if(!arquivo.exists()){
-           try {
-               arquivo.createNewFile();
+        File arquivo = new File(nomeArquivo);
+        if (!arquivo.exists()) {
+            try {
+                arquivo.createNewFile();
                 return true;
-           } catch (IOException ex) {
-               Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
-           }
-          
-       }
-       return false;
+            } catch (IOException ex) {
+                Logger.getLogger(MetodoRemotoImplemente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return false;
     }
 
     @Override
     public boolean salvarArquivo(String nomeArquivo, String texto) throws RemoteException {
-        
-        if(arquivosAbertos.containsKey(nomeArquivo)){
+
+        if (arquivosAbertos.containsKey(nomeArquivo)) {
             Sistema.SalvarTexto(nomeArquivo, texto);
             return true;
-        
+
         }
         return false;
     }
@@ -82,43 +87,39 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public String abrirArquivo(String nomeArquivo, String ip) throws RemoteException {
         String conteudo = "";
-           conteudo = Sistema.CarregarTexto(nomeArquivo);
-           if(arquivosAbertos.containsKey(nomeArquivo)){
-               arquivosAbertos.get(nomeArquivo).add(ip);
-               return conteudo;
-           }
-           else{
-               arquivosAbertos.put(nomeArquivo, new LinkedList<String>());
-               arquivosAbertos.get(nomeArquivo).add(ip);
-               return conteudo;
-           }
+        conteudo = Sistema.CarregarTexto(nomeArquivo);
+        if (arquivosAbertos.containsKey(nomeArquivo)) {
+            arquivosAbertos.get(nomeArquivo).add(ip);
+            return conteudo;
+        } else {
+            arquivosAbertos.put(nomeArquivo, new LinkedList<String>());
+            arquivosAbertos.get(nomeArquivo).add(ip);
+            return conteudo;
+        }
     }
-    
+
     @Override
-    public String[] listarArquivos(){
+    public String[] listarArquivos() {
         String[] ListaDeDiretorios = null;
         File f = new File("Arquivos");
-        if(f.exists() != false){
-           return null;
-           
-        }else
-             return f.list();
-        
+        if (f.exists() != false) {
+            return null;
+
+        } else {
+            return f.list();
+        }
+
     }
 
     @Override
     public void editarArquivo(String informacao) throws RemoteException {
-       pilhaExecucao.add(informacao);
+
+        pilhaExecucao.add(informacao);
+
     }
-    
-    public void verificarPosicao(){
-        
+
+    public void verificarPosicao() {
+
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

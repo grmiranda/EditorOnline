@@ -21,9 +21,9 @@ public class Cliente {
     
     InterfaceMetodoRemoto remote;
     
-    public void conectar(String porta){
+    public void conectar(String ip){
         try{
-        Registry myRegistry = LocateRegistry.getRegistry(porta, 1099);
+        Registry myRegistry = LocateRegistry.getRegistry(ip, 1099);
         remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnlineService");
         
         }catch(Exception e){
@@ -35,6 +35,7 @@ public class Cliente {
         try {
             return remote.loginIn(nome, senha);
         } catch (RemoteException ex) {
+            ex.printStackTrace();
             System.out.println("Erro ao invocar metodo Remoto");
             return false;
         }
@@ -44,7 +45,7 @@ public class Cliente {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public LinkedList<String> getArquivo(String nomeArquivo){
-    
+    public String getArquivo(String nomeArquivo){
+        
     }
 }

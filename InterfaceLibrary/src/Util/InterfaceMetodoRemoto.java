@@ -23,7 +23,9 @@ public interface InterfaceMetodoRemoto extends Remote{
     public boolean criarArquivo(String nomeFile)throws RemoteException;
     
     public boolean salvarArquivo(String nomeArquivo,String texto)throws RemoteException;
-    
+
+    public LinkedList<String> editarArquivo(String nomeArquivo, String caractere, int linha)throws RemoteException;
+
     public String abrirArquivo(String nomeArquivo,  String ip)throws RemoteException;
 
     public String[] listarArquivos() throws RemoteException;
