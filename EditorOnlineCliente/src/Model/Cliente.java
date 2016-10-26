@@ -45,6 +45,7 @@ public class Cliente {
     }
     
     public LinkedList<String> getArquivo(String nomeArquivo){
-    
+        String c;
+        c.toCharArray().
     }
 }
