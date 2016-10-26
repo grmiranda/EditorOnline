@@ -51,6 +51,8 @@ public class ControladorDeTelas extends Application{
     public void logIn(String usuario, String senha) throws IOException{
         if(controller.logIn(usuario, senha)){
             telaInicial();
+        }else{
+            System.out.println("Usuario e senha inválidos");
         }
     }
 
@@ -62,6 +64,10 @@ public class ControladorDeTelas extends Application{
         tela = new Scene(root);
         window.setScene(tela);
         window.show();
+    }
+
+    public String[] getListaArquivos() {
+        return controller.getListaArquivos();
     }
     
     

@@ -43,7 +43,7 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private void abrirArquivo(ActionEvent event) {
-        
+        String[] arquivos = controlador.getListaArquivos();
     }
 
     @FXML

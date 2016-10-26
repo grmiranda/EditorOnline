@@ -42,7 +42,12 @@ public class Cliente {
     }
 
     public String[] getListaArquivos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return remote.listarArquivos();
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao Receber lista de Arquivos");
+        }
+        return null;
     }
     
     public String getArquivo(String nomeArquivo){
