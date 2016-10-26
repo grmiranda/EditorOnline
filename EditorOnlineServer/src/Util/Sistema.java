@@ -9,6 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Sistema {
+    
 
     /**
      * Metodo que salva os dados de um objeto em um arquivo de texto
@@ -17,8 +18,9 @@ public class Sistema {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static void SalvarSistema(Object obj, String diretorio) throws FileNotFoundException, IOException {
-        FileOutputStream fos = new FileOutputStream(diretorio);
+    public static void SalvarSistema(String diretorio, String texto) throws FileNotFoundException, IOException {
+       File f = new File(diretorio);
+       PrintStream saida = new PrintStream(f);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(obj);
         oos.close();

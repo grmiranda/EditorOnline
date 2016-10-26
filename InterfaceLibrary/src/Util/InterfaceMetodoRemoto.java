@@ -24,12 +24,14 @@ public interface InterfaceMetodoRemoto extends Remote{
     
     public boolean salvarArquivo(String nomeArquivo, int posicao, String linha)throws RemoteException;
     
-    public LinkedList<String> editarArquivo(String nomeArquivo, String caractere, int linha)throws RemoteException;
-<<<<<<< HEAD
-    
-=======
+    public String abrirArquivo(String nomeArquivo,  String ip)throws RemoteException;
 
->>>>>>> ebc08710fe2e6be871e6c53379d8f45bf2c38241
     public String[] listarArquivos() throws RemoteException;
-      
+    
+    public void editarArquivo(String modificacao) throws RemoteException;
+    // [0] comando
+    // [1] caractere  se for add
+    // [2] posicao
+    
+    
 }
