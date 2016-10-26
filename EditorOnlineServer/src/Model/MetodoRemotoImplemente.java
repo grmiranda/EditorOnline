@@ -87,7 +87,7 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public String abrirArquivo(String nomeArquivo, String ip) throws RemoteException {
         String conteudo = "";
-        conteudo = Sistema.CarregarTexto(nomeArquivo);
+        conteudo = Sistema.CarregarTexto("Arquivos+"+"/"+nomeArquivo);
         if (arquivosAbertos.containsKey(nomeArquivo)) {
             arquivosAbertos.get(nomeArquivo).add(ip);
             return conteudo;
