@@ -18,22 +18,25 @@ import java.util.logging.Logger;
  * @author grmir
  */
 public class Cliente {
-    
+
     InterfaceMetodoRemoto remote;
-    
-    public void conectar(String ip){
-        try{
-        Registry myRegistry = LocateRegistry.getRegistry(ip, 1099);
-        remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnlineService");
-        
-        }catch(Exception e){
-           e.printStackTrace();
+    String ip;
+
+    public void conectar(String ip) {
+        try {
+            Registry myRegistry = LocateRegistry.getRegistry(ip, 1099);
+            remote = (InterfaceMetodoRemoto) myRegistry.lookup("EditorOnlineService");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    
-    public boolean logIn(String nome, String senha) {
+
+    public boolean logIn(String nome, String senha, String ip) {
         try {
+            this.ip = ip;
             return remote.loginIn(nome, senha);
+            
         } catch (RemoteException ex) {
             ex.printStackTrace();
             System.out.println("Erro ao invocar metodo Remoto");
@@ -49,8 +52,13 @@ public class Cliente {
         }
         return null;
     }
-    
-    public String getArquivo(String nomeArquivo){
-        
+
+    public String getArquivo(String nomeArquivo) {
+        try {
+            return remote.abrirArquivo(nomeArquivo, ip);
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao abrir arquivo");
+        }
+        return null;
     }
 }

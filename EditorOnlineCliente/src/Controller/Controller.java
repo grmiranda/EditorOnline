@@ -27,8 +27,8 @@ public class Controller {
         return instance;
     }
     
-    public boolean logIn(String nome, String senha){
-        return cliente.logIn(nome, senha);
+    public boolean logIn(String nome, String senha, String ip){
+        return cliente.logIn(nome, senha, ip);
     }
     
     public void conectar(String ipServidor){

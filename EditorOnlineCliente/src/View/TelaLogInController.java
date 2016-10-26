@@ -29,6 +29,8 @@ public class TelaLogInController implements Initializable {
     private Button logIn;
     @FXML
     private TextField ipServidorInput;
+    @FXML
+    private TextField ipLocal;
     /**
      * Initializes the controller class.
      */
@@ -41,7 +43,7 @@ public class TelaLogInController implements Initializable {
     private void logIn(ActionEvent event) throws IOException {
         if(!ipServidorInput.getText().isEmpty() && !senhaInput.getText().isEmpty() && !usuarioInput.getText().isEmpty()){
             controlador.conectar(ipServidorInput.getText());
-            controlador.logIn(usuarioInput.getText(), senhaInput.getText());
+            controlador.logIn(usuarioInput.getText(), senhaInput.getText(), ipLocal.getText());
         }
     }
     

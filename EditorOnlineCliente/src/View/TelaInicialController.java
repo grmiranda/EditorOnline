@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
  * @author grmir
  */
 public class TelaInicialController implements Initializable {
+
     private ControladorDeTelas controlador;
     @FXML
     private TextArea textoArquivo;
@@ -33,26 +34,35 @@ public class TelaInicialController implements Initializable {
     private Button atualizarLista;
     @FXML
     private Button salvarArquivo;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlador = new ControladorDeTelas();
-    }    
+    }
 
     @FXML
     private void abrirArquivo(ActionEvent event) {
-        String[] arquivos = controlador.getListaArquivos();
+        String texto = controlador.getArquivo(arquivoInput.getText());
+        textoArquivo.setText(texto);
     }
 
     @FXML
     private void atualizarLista(ActionEvent event) {
-        
+        String[] arquivos = controlador.getListaArquivos();
+        if (arquivos != null) {
+            for (String arquivo : arquivos) {
+                listaArquivos.setText(listaArquivos.getText() + arquivo + "\n");
+            }
+        }else{
+            System.out.println("A lista de arquivos é nula");
+        }
     }
 
     @FXML
     private void salvarArquivo(ActionEvent event) {
     }
-    
+
 }

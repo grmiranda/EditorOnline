@@ -18,17 +18,17 @@
             <Reflection bottomOpacity="0.15" fraction="0.79" topOffset="-10.0" />
          </effect>
       </Label>
-      <Label layoutX="76.0" layoutY="85.0" prefHeight="17.0" prefWidth="74.0" text="Usuário:">
+      <Label layoutX="79.0" layoutY="59.0" prefHeight="17.0" prefWidth="74.0" text="Usuário:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="76.0" layoutY="129.0" text="Senha">
+      <Label layoutX="79.0" layoutY="103.0" text="Senha:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField id="usuarioInput" fx:id="usuarioInput" layoutX="225.0" layoutY="85.0" promptText="Nome do Usuário">
+      <TextField id="usuarioInput" fx:id="usuarioInput" layoutX="228.0" layoutY="59.0" promptText="Nome do Usuário">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,17 +38,27 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <PasswordField fx:id="senhaInput" layoutX="226.0" layoutY="132.0" promptText="Senha">
+      <PasswordField fx:id="senhaInput" layoutX="229.0" layoutY="106.0" promptText="Senha">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <Label layoutX="76.0" layoutY="176.0" text="IP do Servidor:">
+      <Label layoutX="79.0" layoutY="150.0" text="IP do Servidor:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="ipServidorInput" layoutX="226.0" layoutY="179.0" promptText="IP Servidor">
+      <TextField fx:id="ipServidorInput" layoutX="229.0" layoutY="153.0" promptText="IP Servidor">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="79.0" layoutY="201.0" text="IP Local:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ipLocal" layoutX="228.0" layoutY="201.0" prefHeight="30.0" prefWidth="175.0" promptText="IP Local">
          <font>
             <Font size="14.0" />
          </font>
