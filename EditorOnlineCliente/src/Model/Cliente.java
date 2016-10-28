@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.Controller;
 import Util.InterfaceMetodoRemoto;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -17,10 +18,12 @@ import java.util.logging.Logger;
  *
  * @author grmir
  */
-public class Cliente {
+public class Cliente implements Runnable{
 
-    InterfaceMetodoRemoto remote;
-    String ip;
+    private InterfaceMetodoRemoto remote;
+    private String ip;
+    private Controller controller;
+    private String usuario;
 
     public void conectar(String ip) {
         try {
@@ -32,9 +35,10 @@ public class Cliente {
         }
     }
 
-    public boolean logIn(String nome, String senha, String ip) {
+    public boolean logIn(String nome, String senha) {
         try {
-            this.ip = ip;
+            controller = Controller.getInstance();
+            usuario = nome;
             return remote.loginIn(nome, senha);
             
         } catch (RemoteException ex) {
@@ -55,10 +59,27 @@ public class Cliente {
 
     public String getArquivo(String nomeArquivo) {
         try {
+            new Thread(this).start();
             return remote.abrirArquivo(nomeArquivo, ip);
         } catch (RemoteException ex) {
             System.out.println("Erro ao abrir arquivo");
         }
         return null;
+    }
+    
+    public void atualizarArquivo(){
+        try {
+            String msg = remote.atualizarArquivo(usuario);
+            if(msg != null){
+               controller.atualizarArquivo(msg);
+            }
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao atualizar arquivo");
+        }
+    }
+
+    @Override
+    public void run() {
+        atualizarArquivo();
     }
 }

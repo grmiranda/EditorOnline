@@ -1,6 +1,7 @@
 
 package View;
 
+import Controller.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,21 +30,20 @@ public class TelaLogInController implements Initializable {
     private Button logIn;
     @FXML
     private TextField ipServidorInput;
-    @FXML
-    private TextField ipLocal;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlador = new ControladorDeTelas();
+
     }
 
     @FXML
     private void logIn(ActionEvent event) throws IOException {
         if(!ipServidorInput.getText().isEmpty() && !senhaInput.getText().isEmpty() && !usuarioInput.getText().isEmpty()){
             controlador.conectar(ipServidorInput.getText());
-            controlador.logIn(usuarioInput.getText(), senhaInput.getText(), ipLocal.getText());
+            controlador.logIn(usuarioInput.getText(), senhaInput.getText());
         }
     }
     

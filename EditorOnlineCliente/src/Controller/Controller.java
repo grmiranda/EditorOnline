@@ -6,6 +6,9 @@
 package Controller;
 
 import Model.Cliente;
+import View.ControladorDeTelas;
+import View.TelaInicialController;
+import View.TelaLogInController;
 import java.util.LinkedList;
 
 /**
@@ -15,6 +18,7 @@ import java.util.LinkedList;
 public class Controller {
     private static Controller instance = new Controller();
     private Cliente cliente;
+    private TelaInicialController controladorTela;
     
     private Controller(){
         cliente = new Cliente();
@@ -26,9 +30,13 @@ public class Controller {
         }
         return instance;
     }
+
+    public void setControladorTela(TelaInicialController controladorTela) {
+        this.controladorTela = controladorTela;
+    }
     
-    public boolean logIn(String nome, String senha, String ip){
-        return cliente.logIn(nome, senha, ip);
+    public boolean logIn(String nome, String senha){
+        return cliente.logIn(nome, senha);
     }
     
     public void conectar(String ipServidor){
@@ -42,4 +50,10 @@ public class Controller {
     public String[] getListaArquivos(){
         return cliente.getListaArquivos();
     }
+
+    public void atualizarArquivo(String msg) {
+        controladorTela.atualizarArquivo(msg);
+    }
+    
+    
 }

@@ -35,5 +35,6 @@ public interface InterfaceMetodoRemoto extends Remote{
     // [1] caractere  se for add
     // [2] posicao
     
+    public String atualizarArquivo(String usuario) throws RemoteException;
     
 }

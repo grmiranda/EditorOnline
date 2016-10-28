@@ -48,8 +48,8 @@ public class ControladorDeTelas extends Application{
         controller.conectar(ipServidor);
     }
     
-    public void logIn(String usuario, String senha, String ip) throws IOException{
-        if(controller.logIn(usuario, senha, ip)){
+    public void logIn(String usuario, String senha) throws IOException{
+        if(controller.logIn(usuario, senha)){
             telaInicial();
         }else{
             System.out.println("Usuario e senha inválidos");

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -22,6 +24,7 @@ import javafx.scene.control.TextField;
 public class TelaInicialController implements Initializable {
 
     private ControladorDeTelas controlador;
+    private Controller controller;
     @FXML
     private TextArea textoArquivo;
     @FXML
@@ -41,6 +44,8 @@ public class TelaInicialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controlador = new ControladorDeTelas();
+        controller = Controller.getInstance();
+        controller.setControladorTela(this);
     }
 
     @FXML
@@ -64,6 +69,21 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private void salvarArquivo(ActionEvent event) {
+    }
+
+    public void atualizarArquivo(String msg) {
+        String info[] = msg.split(";");
+        if(info[0].equals("#01")){
+            //adicionando
+            textoArquivo.insertText(Integer.parseInt(info[2]), info[1]);
+        }else if(info[0].equals("#02")){
+            // removendo
+            textoArquivo.deleteText(Integer.parseInt(info[1]), Integer.parseInt(info[1]) + 1);
+        }
+    }
+
+    @FXML
+    private void entradaTeclado(KeyEvent event) {
     }
 
 }
