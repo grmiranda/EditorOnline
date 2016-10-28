@@ -84,8 +84,6 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private void entradaTeclado(KeyEvent event) {
-        System.out.println(event.toString());
-        System.out.println(event.getText());
         System.out.println(event.getCode());
         System.out.println("-------");
     }
