@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 public class Cliente implements Runnable{
 
     private InterfaceMetodoRemoto remote;
-    private String ip;
     private Controller controller;
     private String usuario;
 
@@ -60,7 +59,7 @@ public class Cliente implements Runnable{
     public String getArquivo(String nomeArquivo) {
         try {
             new Thread(this).start();
-            return remote.abrirArquivo(nomeArquivo, ip);
+            return remote.abrirArquivo(nomeArquivo, usuario);
         } catch (RemoteException ex) {
             System.out.println("Erro ao abrir arquivo");
         }
