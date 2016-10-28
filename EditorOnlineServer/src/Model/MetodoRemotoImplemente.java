@@ -131,7 +131,7 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
 
     @Override
     public String atualizarArquivo(String usuario) throws RemoteException {
-<<<<<<< HEAD
+
         
         return pilhaExecucao.get(usuario).removeFirst();
         
@@ -150,14 +150,6 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         
         
         return false;
-=======
-
-        return null;
->>>>>>> 7023b117059188cb518567d7c18ef4bb68bda55a
     }
 
-    @Override
-    public boolean fecharArquivo(String string, String string1) throws RemoteException {
-        return true;
-    }
 }
