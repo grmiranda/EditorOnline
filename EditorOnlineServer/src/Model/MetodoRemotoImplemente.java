@@ -115,13 +115,12 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
 
     @Override
     public void editarArquivo(String informacao) throws RemoteException {
-
-        pilhaExecucao.add(informacao);
-
+        verificarPosicao(informacao);
+        Thread.
     }
 
-    public void verificarPosicao() {
-
+    public synchronized void verificarPosicao(String informacao) {
+        pilhaExecucao.add(informacao);
     }
 
 }
