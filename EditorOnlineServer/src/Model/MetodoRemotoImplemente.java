@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class MetodoRemotoImplemente extends UnicastRemoteObject implements InterfaceMetodoRemoto {
 
-    private LinkedList<String> pilhaExecucao;
+    private HashMap<String, LinkedList<String>> pilhaExecucao;
     private HashMap<String, LinkedList<String>> arquivosAbertos;
 
     //arquivosAbertos contem como chave o nome do arquivo e uma lista de IPs dos usuarios que estão editando
@@ -32,7 +32,7 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         super();
 
         arquivosAbertos = new HashMap<>();      
-        pilhaExecucao = new LinkedList<>();
+        pilhaExecucao = new HashMap<>();
 
     }
 
@@ -47,6 +47,8 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
                     String dados[] = s.nextLine().split(" ");
                     if (dados[0].equals(username) && dados[1].equals(senha)) {
                         s.close();
+                        if(!pilhaExecucao.containsKey(username))
+                            pilhaExecucao.put(username,new LinkedList<String>());
                         return true;
                     }
                 }
@@ -114,13 +116,19 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     }
 
     @Override
-    public void editarArquivo(String informacao) throws RemoteException {
-        verificarPosicao(informacao);
-        Thread.
+    public void editarArquivo(String informacao, String usuario) throws RemoteException {
+        verificarPosicao(informacao, usuario);
+       
     }
 
-    public synchronized void verificarPosicao(String informacao) {
-        pilhaExecucao.add(informacao);
+    public synchronized void verificarPosicao(String informacao, String usuario) {
+        
+    }
+    
+
+    @Override
+    public String atualizarArquivo(String string) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
