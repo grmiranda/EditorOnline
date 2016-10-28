@@ -52,6 +52,7 @@ public class TelaInicialController implements Initializable {
     @FXML
     private void atualizarLista(ActionEvent event) {
         String[] arquivos = controlador.getListaArquivos();
+        listaArquivos.setText(" ");
         if (arquivos != null) {
             for (String arquivo : arquivos) {
                 listaArquivos.setText(listaArquivos.getText() + arquivo + "\n");
