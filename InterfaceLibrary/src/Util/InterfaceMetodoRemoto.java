@@ -28,11 +28,13 @@ public interface InterfaceMetodoRemoto extends Remote{
 
     public String[] listarArquivos() throws RemoteException;
     
-    public void editarArquivo(String modificacao, String usuario) throws RemoteException;
+    public void editarArquivo(String modificacao, String usuario, String nomeArquivo) throws RemoteException;
     // [0] comando
     // [1] caractere  se for add
     // [2] posicao
     
     public String atualizarArquivo(String usuario) throws RemoteException;
     
+    
+    public boolean fecharArquivo(String usuario, String nomeArquivo) throws RemoteException;
 }
