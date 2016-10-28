@@ -117,23 +117,24 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     }
 
     @Override
-    public void editarArquivo(String informacao, String usuario) throws RemoteException {
-        verificarPosicao(informacao, usuario);
+    public void editarArquivo(String informacao, String usuario, String nomeArquivo) throws RemoteException {
+        verificarPosicao(informacao, usuario, nomeArquivo);
 
     }
 
-    public synchronized void verificarPosicao(String informacao, String usuario) {
+    public synchronized void verificarPosicao(String informacao, String usuario, String nomeArquivo) {
         for (String str : pilhaExecucao.keySet()) {
-            if (!str.equals(usuario)) {
-                pilhaExecucao.get(str).add(informacao);
-            }
+            if(arquivosAbertos.get(nomeArquivo).contains(usuario));
+               pilhaExecucao.get(str).add(informacao);
+            
         }
 
     }
 
     @Override
-    public String atualizarArquivo(String string) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String atualizarArquivo(String usuario) throws RemoteException {
+        
+        return null;
     }
 
 }
