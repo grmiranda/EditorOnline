@@ -54,6 +54,10 @@ public class Controller {
     public void atualizarArquivo(String msg) {
         controladorTela.atualizarArquivo(msg);
     }
+
+    public void editarArquivo(String string) {
+        
+    }
     
     
 }

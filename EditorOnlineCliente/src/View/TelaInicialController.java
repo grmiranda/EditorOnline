@@ -37,6 +37,11 @@ public class TelaInicialController implements Initializable {
     private Button atualizarLista;
     @FXML
     private Button salvarArquivo;
+    
+    private boolean capslook;
+    private boolean shift;
+    private String nomeArquivo;
+    private String texto;
 
     /**
      * Initializes the controller class.
@@ -46,12 +51,20 @@ public class TelaInicialController implements Initializable {
         controlador = new ControladorDeTelas();
         controller = Controller.getInstance();
         controller.setControladorTela(this);
+        nomeArquivo = "";
+        texto = "";
     }
 
     @FXML
     private void abrirArquivo(ActionEvent event) {
+        
+         //sair do arquivo caso ja tenha um aberto
         String texto = controlador.getArquivo(arquivoInput.getText());
+        nomeArquivo = arquivoInput.getText();
+        this.texto = texto;
         textoArquivo.setText(texto);
+        capslook = false;
+        shift = false;
     }
 
     @FXML
@@ -80,10 +93,30 @@ public class TelaInicialController implements Initializable {
             // removendo
             textoArquivo.deleteText(Integer.parseInt(info[1]), Integer.parseInt(info[1]) + 1);
         }
+        texto = textoArquivo.getText();
     }
 
     @FXML
     private void entradaTeclado(KeyEvent event) {
+        if(event.getCode().toString().equals("SHIFT")){
+            shift = true;
+        }else if(event.getCode().toString().equals("CAPS")){
+            if(capslook == true){
+                capslook = false;
+            }else if(capslook == false){
+                capslook = true;
+            }
+        }
+        if(event.getCode().toString().equals("BACK_SPACE")){
+            controller.editarArquivo("#02;" +textoArquivo.getCaretPosition());
+        }else if(!event.getText().isEmpty()){
+            if(shift == true || capslook == true){
+                controller.editarArquivo("#01;" + event.getText().toUpperCase() + ";" + textoArquivo.getCaretPosition());
+                shift = false;
+            }else{
+                controller.editarArquivo("#01;" + event.getText() + ";" + textoArquivo.getCaretPosition());
+            }
+        }
     }
 
 }
