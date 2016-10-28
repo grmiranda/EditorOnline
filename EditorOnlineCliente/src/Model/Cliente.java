@@ -80,6 +80,6 @@ public class Cliente implements Runnable{
 
     @Override
     public void run() {
-        atualizarArquivo();
+        //atualizarArquivo();
     }
 }

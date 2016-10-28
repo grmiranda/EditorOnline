@@ -116,11 +116,21 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public void editarArquivo(String informacao) throws RemoteException {
         verificarPosicao(informacao);
-        Thread.
+        //Thread.
     }
 
     public synchronized void verificarPosicao(String informacao) {
         pilhaExecucao.add(informacao);
+    }
+
+    @Override
+    public LinkedList<String> editarArquivo(String string, String string1, int i) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String atualizarArquivo(String string) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
