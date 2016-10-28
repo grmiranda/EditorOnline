@@ -134,7 +134,23 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public String atualizarArquivo(String usuario) throws RemoteException {
         
-        return null;
+        return pilhaExecucao.get(usuario).removeFirst();
+        
+    }
+
+    /*
+    Na hora que o usuario fecha o arquivo, esse metodo eh chamado e remove o usuario
+    da Hash arquivosAberto e pilhaExecucao
+    */
+    @Override
+    public boolean fecharArquivo(String usuario, String nomeArquivo) throws RemoteException {
+        
+        pilhaExecucao.remove(usuario);
+        if(pilhaExecucao.containsKey(usuario) == false && arquivosAbertos.get(nomeArquivo).remove(usuario) == true)
+                return true;
+        
+        
+        return false;
     }
 
 }
