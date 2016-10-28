@@ -24,15 +24,15 @@ import java.util.logging.Logger;
  */
 public class MetodoRemotoImplemente extends UnicastRemoteObject implements InterfaceMetodoRemoto {
 
-    private LinkedList<String> pilhaExecucao;
+    private HashMap<String, LinkedList<String>> pilhaExecucao; //pilha é um Hash com chave como nome do usuario e sua pilha de execucao
     private HashMap<String, LinkedList<String>> arquivosAbertos;
 
     //arquivosAbertos contem como chave o nome do arquivo e uma lista de IPs dos usuarios que estão editando
     public MetodoRemotoImplemente() throws RemoteException {
         super();
 
-        arquivosAbertos = new HashMap<>();      
-        pilhaExecucao = new LinkedList<>();
+        arquivosAbertos = new HashMap<>();
+        pilhaExecucao = new HashMap<>();
 
     }
 
@@ -47,6 +47,9 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
                     String dados[] = s.nextLine().split(" ");
                     if (dados[0].equals(username) && dados[1].equals(senha)) {
                         s.close();
+                        if (!pilhaExecucao.containsKey(username)) {
+                            pilhaExecucao.put(username, new LinkedList<String>());
+                        }
                         return true;
                     }
                 }
@@ -87,7 +90,7 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     @Override
     public String abrirArquivo(String nomeArquivo, String ip) throws RemoteException {
         String conteudo = "";
-        conteudo = Sistema.CarregarTexto("Arquivos"+"/"+nomeArquivo);
+        conteudo = Sistema.CarregarTexto("Arquivos" + "/" + nomeArquivo);
         if (arquivosAbertos.containsKey(nomeArquivo)) {
             arquivosAbertos.get(nomeArquivo).add(ip);
             return conteudo;
@@ -103,34 +106,33 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         String[] ListaDeDiretorios = null;
         File f = new File("Arquivos");
         if (f.exists() == true) {
-            
+
             return f.list();
 
         } else {
             return null;
-            
+
+        }
+
+    }
+
+
+    public void editarArquivo(String informacao, String usuario) throws RemoteException {
+        verificarPosicao(informacao, usuario);
+
+    }
+
+    public synchronized void verificarPosicao(String informacao, String usuario) {
+        for (String str : pilhaExecucao.keySet()) {
+            if (!str.equals(usuario)) {
+                pilhaExecucao.get(str).add(informacao);
+            }
         }
 
     }
 
     @Override
-    public void editarArquivo(String informacao) throws RemoteException {
-        verificarPosicao(informacao);
-        //Thread.
-    }
-
-    public synchronized void verificarPosicao(String informacao) {
-        pilhaExecucao.add(informacao);
-    }
-
-    @Override
-    public LinkedList<String> editarArquivo(String string, String string1, int i) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public String atualizarArquivo(String string) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
-
 }
