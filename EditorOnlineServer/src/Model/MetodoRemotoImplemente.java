@@ -129,6 +129,8 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         int posicao = Integer.parseInt(dado[2]);
         for (String str : pilhaExecucao.keySet()) {
             if(arquivosAbertos.get(nomeArquivo).contains(str)){
+                if(!str.equals(usuario)){ // IF para barrar que o usuario coloque o caracter em sua propria pilha
+                
                auxiliar = pilhaExecucao.get(str);
                for(int i = 0; i <  auxiliar.size(); i++){
                    aux = auxiliar.get(i).split(";");
@@ -138,7 +140,8 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
                }
                informacao = dado[0]+";"+dado[1]+";"+posicao;
                 pilhaExecucao.get(str).add(informacao);
-                posicao = Integer.parseInt(dado[2]);
+                posicao = Integer.parseInt(dado[2]);//precisa disso, pois modifico o valor de posicao e preciso dele para inserir nos outros
+            }
             }
         }
 
