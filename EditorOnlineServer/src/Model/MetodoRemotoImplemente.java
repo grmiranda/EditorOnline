@@ -125,11 +125,11 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         
         String[] dado = informacao.split(";");
         String[] aux;
-        LinkedList<String> auxiliar;
+        LinkedList<String> auxiliar; //uma lista auxiliar para as listas de requisições
         int posicao = Integer.parseInt(dado[2]);
         for (String str : pilhaExecucao.keySet()) {
             if(arquivosAbertos.get(nomeArquivo).contains(str)){
-               auxiliar = arquivosAbertos.get(nomeArquivo);
+               auxiliar = pilhaExecucao.get(str);
                for(int i = 0; i <  auxiliar.size(); i++){
                    aux = auxiliar.get(i).split(";");
                    int posicaoAuxiliar = Integer.parseInt(aux[2]);
