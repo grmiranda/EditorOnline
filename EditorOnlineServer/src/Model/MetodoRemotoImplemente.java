@@ -122,21 +122,55 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     }
 
     public synchronized void verificarPosicao(String informacao, String usuario, String nomeArquivo) {
+        
+        String[] dado = informacao.split(";");
+        String[] aux;
+        LinkedList<String> auxiliar;
+        int posicao = Integer.parseInt(dado[2]);
         for (String str : pilhaExecucao.keySet()) {
-            if(arquivosAbertos.get(nomeArquivo).contains(usuario));
-               pilhaExecucao.get(str).add(informacao);
+            if(arquivosAbertos.get(nomeArquivo).contains(str)){
+               auxiliar = arquivosAbertos.get(nomeArquivo);
+               for(int i = 0; i <  auxiliar.size(); i++){
+                   aux = auxiliar.get(i).split(";");
+                   int posicaoAuxiliar = Integer.parseInt(aux[2]);
+                   if(posicaoAuxiliar <= posicao)
+                       posicao++;
+               }
+               informacao = dado[0]+";"+dado[1]+";"+posicao;
+                pilhaExecucao.get(str).add(informacao);
+                posicao = Integer.parseInt(dado[2]);
+            }
         }
 
     }
-
+    
+    /*
+    Metodo que retorna o primeiro elemento de uma pilha
+    Se a pilha estiver fazia ele retorna null.
+    */
     @Override
     public String atualizarArquivo(String usuario) throws RemoteException {
 
-        return null;
+        if(pilhaExecucao.get(usuario).isEmpty())
+            return null;
+        
+        return pilhaExecucao.get(usuario).removeFirst();
+        
     }
 
+    /*
+    Na hora que o usuario fecha o arquivo, esse metodo eh chamado e remove o usuario
+    da Hash arquivosAberto e pilhaExecucao
+    */
     @Override
-    public boolean fecharArquivo(String string, String string1) throws RemoteException {
-        return true;
+    public boolean fecharArquivo(String usuario, String nomeArquivo) throws RemoteException {
+        
+        pilhaExecucao.remove(usuario);
+        if(pilhaExecucao.containsKey(usuario) == false && arquivosAbertos.get(nomeArquivo).remove(usuario) == true)
+                return true;
+        
+        
+        return false;
     }
+
 }
