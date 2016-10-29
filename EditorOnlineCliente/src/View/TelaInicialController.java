@@ -57,7 +57,9 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private void abrirArquivo(ActionEvent event) {
-        
+        if(!nomeArquivo.equals("")){
+            controller.fecharArquivo(nomeArquivo);
+        }
          //sair do arquivo caso ja tenha um aberto
         String texto = controlador.getArquivo(arquivoInput.getText());
         nomeArquivo = arquivoInput.getText();
@@ -82,6 +84,7 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private void salvarArquivo(ActionEvent event) {
+        //comando para salvar arquivo
     }
 
     public void atualizarArquivo(String msg) {
@@ -108,15 +111,23 @@ public class TelaInicialController implements Initializable {
             }
         }
         if(event.getCode().toString().equals("BACK_SPACE")){
-            controller.editarArquivo("#02;" +textoArquivo.getCaretPosition());
+            controller.editarArquivo("#02;" +textoArquivo.getCaretPosition(), nomeArquivo);
         }else if(!event.getText().isEmpty()){
             if(shift == true || capslook == true){
-                controller.editarArquivo("#01;" + event.getText().toUpperCase() + ";" + textoArquivo.getCaretPosition());
+                controller.editarArquivo("#01;" + event.getText().toUpperCase() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
                 shift = false;
             }else{
-                controller.editarArquivo("#01;" + event.getText() + ";" + textoArquivo.getCaretPosition());
+                controller.editarArquivo("#01;" + event.getText() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
             }
         }
+    }
+
+    @FXML
+    private void liberaçãoTecla(KeyEvent event) {
+        int caretPos = textoArquivo.getCaretPosition();
+        textoArquivo.setText(texto);
+        textoArquivo.positionCaret(caretPos);
+        
     }
 
 }

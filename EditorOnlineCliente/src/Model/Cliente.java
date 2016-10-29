@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author grmir
  */
-public class Cliente implements Runnable{
+public class Cliente implements Runnable {
 
     private InterfaceMetodoRemoto remote;
     private Controller controller;
@@ -39,7 +39,7 @@ public class Cliente implements Runnable{
             controller = Controller.getInstance();
             usuario = nome;
             return remote.loginIn(nome, senha);
-            
+
         } catch (RemoteException ex) {
             ex.printStackTrace();
             System.out.println("Erro ao invocar metodo Remoto");
@@ -65,12 +65,12 @@ public class Cliente implements Runnable{
         }
         return null;
     }
-    
-    public void atualizarArquivo(){
+
+    public void atualizarArquivo() {
         try {
             String msg = remote.atualizarArquivo(usuario);
-            if(msg != null){
-               controller.atualizarArquivo(msg);
+            if (msg != null) {
+                controller.atualizarArquivo(msg);
             }
         } catch (RemoteException ex) {
             System.out.println("Erro ao atualizar arquivo");
@@ -79,6 +79,22 @@ public class Cliente implements Runnable{
 
     @Override
     public void run() {
-        //atualizarArquivo();
+        atualizarArquivo();
+    }
+
+    public void editarArquivo(String msg, String nomeArquivo) {
+        try {
+            remote.editarArquivo(msg, usuario, nomeArquivo);
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao editar o arquivo");
+        }
+    }
+
+    public void fecharAquivo(String nomeArquivo) {
+        try {
+            remote.fecharArquivo(usuario, nomeArquivo);
+        } catch (RemoteException ex) {
+            System.out.println("Erro ao fechar o arquivo");
+        }
     }
 }
