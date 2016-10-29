@@ -79,7 +79,9 @@ public class Cliente implements Runnable {
 
     @Override
     public void run() {
-        atualizarArquivo();
+        while(true){
+            atualizarArquivo();
+        }
     }
 
     public void editarArquivo(String msg, String nomeArquivo) {

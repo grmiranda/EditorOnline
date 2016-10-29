@@ -42,6 +42,7 @@ public class TelaInicialController implements Initializable {
     private boolean shift;
     private String nomeArquivo;
     private String texto;
+    private int edicao;
 
     /**
      * Initializes the controller class.
@@ -53,6 +54,7 @@ public class TelaInicialController implements Initializable {
         controller.setControladorTela(this);
         nomeArquivo = "";
         texto = "";
+        edicao = 0;
     }
 
     @FXML
@@ -94,7 +96,7 @@ public class TelaInicialController implements Initializable {
             textoArquivo.insertText(Integer.parseInt(info[2]), info[1]);
         }else if(info[0].equals("#02")){
             // removendo
-            textoArquivo.deleteText(Integer.parseInt(info[1]), Integer.parseInt(info[1]) + 1);
+            textoArquivo.deleteText(Integer.parseInt(info[2]), Integer.parseInt(info[2]) + 1);
         }
         texto = textoArquivo.getText();
     }
@@ -111,7 +113,7 @@ public class TelaInicialController implements Initializable {
             }
         }
         if(event.getCode().toString().equals("BACK_SPACE")){
-            controller.editarArquivo("#02;" +textoArquivo.getCaretPosition(), nomeArquivo);
+            controller.editarArquivo("#02;;" +textoArquivo.getCaretPosition(), nomeArquivo);
         }else if(!event.getText().isEmpty()){
             if(shift == true || capslook == true){
                 controller.editarArquivo("#01;" + event.getText().toUpperCase() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
@@ -119,15 +121,13 @@ public class TelaInicialController implements Initializable {
             }else{
                 controller.editarArquivo("#01;" + event.getText() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
             }
+            
         }
     }
 
     @FXML
     private void liberaçãoTecla(KeyEvent event) {
-        int caretPos = textoArquivo.getCaretPosition();
-        textoArquivo.setText(texto);
-        textoArquivo.positionCaret(caretPos);
-        
+        // NADA A FAZER 
     }
 
 }
