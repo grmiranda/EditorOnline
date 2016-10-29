@@ -128,10 +128,16 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
         }
 
     }
-
+    
+    /*
+    Metodo que retorna o primeiro elemento de uma pilha
+    Se a pilha estiver fazia ele retorna null.
+    */
     @Override
     public String atualizarArquivo(String usuario) throws RemoteException {
 
+        if(pilhaExecucao.get(usuario).isEmpty())
+            return null;
         
         return pilhaExecucao.get(usuario).removeFirst();
         
