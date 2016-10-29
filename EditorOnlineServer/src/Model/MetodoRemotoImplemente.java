@@ -122,9 +122,24 @@ public class MetodoRemotoImplemente extends UnicastRemoteObject implements Inter
     }
 
     public synchronized void verificarPosicao(String informacao, String usuario, String nomeArquivo) {
+        
+        String[] dado = informacao.split(";");
+        String[] aux;
+        LinkedList<String> auxiliar;
+        int posicao = Integer.parseInt(dado[2]);
         for (String str : pilhaExecucao.keySet()) {
-            if(arquivosAbertos.get(nomeArquivo).contains(usuario));
-               pilhaExecucao.get(str).add(informacao);
+            if(arquivosAbertos.get(nomeArquivo).contains(str)){
+               auxiliar = arquivosAbertos.get(nomeArquivo);
+               for(int i = 0; i <  auxiliar.size(); i++){
+                   aux = auxiliar.get(i).split(";");
+                   int posicaoAuxiliar = Integer.parseInt(aux[2]);
+                   if(posicaoAuxiliar <= posicao)
+                       posicao++;
+               }
+               informacao = dado[0]+";"+dado[1]+";"+posicao;
+                pilhaExecucao.get(str).add(informacao);
+                posicao = Integer.parseInt(dado[2]);
+            }
         }
 
     }
