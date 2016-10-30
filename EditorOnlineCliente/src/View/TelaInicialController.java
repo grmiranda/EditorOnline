@@ -96,7 +96,11 @@ public class TelaInicialController implements Initializable {
             textoArquivo.insertText(Integer.parseInt(info[2]), info[1]);
         }else if(info[0].equals("#02")){
             // removendo
-            textoArquivo.deleteText(Integer.parseInt(info[2]), Integer.parseInt(info[2]) + 1);
+            //textoArquivo.deleteText(Integer.parseInt(info[2]), Integer.parseInt(info[2]));
+            int pos = textoArquivo.getCaretPosition();
+            textoArquivo.positionCaret(Integer.parseInt(info[2]));
+            textoArquivo.deletePreviousChar();
+            textoArquivo.positionCaret(pos);
         }
         texto = textoArquivo.getText();
     }
@@ -113,7 +117,9 @@ public class TelaInicialController implements Initializable {
             }
         }
         if(event.getCode().toString().equals("BACK_SPACE")){
-            controller.editarArquivo("#02;;" +textoArquivo.getCaretPosition(), nomeArquivo);
+            controller.editarArquivo("#02;x;" +textoArquivo.getCaretPosition(), nomeArquivo);
+        }else if(event.getCode().toString().equals("ENTER")){
+            controller.editarArquivo("#01;" + "\n;" + textoArquivo.getCaretPosition(), nomeArquivo);
         }else if(!event.getText().isEmpty()){
             if(shift == true || capslook == true){
                 controller.editarArquivo("#01;" + event.getText().toUpperCase() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
@@ -121,7 +127,6 @@ public class TelaInicialController implements Initializable {
             }else{
                 controller.editarArquivo("#01;" + event.getText() + ";" + textoArquivo.getCaretPosition(), nomeArquivo);
             }
-            
         }
     }
 
